@@ -1,0 +1,5 @@
+TestCase ID	Step Number	Keyword	Locator Type	Locator Value	Parameter 1	Parameter 2	Parameter 3
+TC001	1	openURL	xpath	https://practice.automationtesting.in/my-account/			
+TC001	2	enterText	xpath	//input[@id='username']	bajpaishivaji75@gmail.com		
+TC001	3	enterText	xpath	//input[@id='password']	@@Qwerty12345@@		
+TC001	4	clickElement	xpath	//input[@name='login']			
