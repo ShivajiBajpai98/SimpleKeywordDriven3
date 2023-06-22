@@ -1,33 +1,40 @@
 package com.atmecs.tests;
 
 import com.atmecs.config.ConfigReader;
-
 import com.atmecs.core.DriverFactory;
 import com.atmecs.keywords.KeywordFunctions;
-
 import com.atmecs.senarios.Login;
-import com.atmecs.senarios.Search;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-public class KeywordRunner
-{
-    public static void main(String[] args) {
-        // Load the configuration properties
-        ConfigReader configReader = new ConfigReader("src/main/resources/config/config.properties",
-                "src/main/resources/config/login.properties","src/main/resources/config/search.properties");
+public class KeywordRunner {
+    private ConfigReader configReader;
+    private DriverFactory driverFactory;
+    private KeywordFunctions keywordFunctions;
 
-        // Set up WebDriver
-        String browserName = configReader.getProperty("browserName");
-        DriverFactory driverFactory = new DriverFactory();
-        driverFactory.setupDriver(browserName);
+    @BeforeClass
+    public void setup() {
+        // Read the configuration properties
+        configReader = new ConfigReader("src/main/resources/config/config.properties", "src/main/resources/config/login.properties");
+
+        // Initialize the WebDriver
+        driverFactory = new DriverFactory();
+        driverFactory.setupDriver(configReader.getProperty("browser"));
 
         // Create an instance of KeywordFunctions
-        KeywordFunctions keywordFunctions = new KeywordFunctions(driverFactory.getDriver());
+        keywordFunctions = new KeywordFunctions(driverFactory.getDriver());
+    }
 
-        // Execute test steps
-        Search.executeTestSteps(configReader, keywordFunctions);
+    @Test
+    public void executeLoginTest() {
+        // Execute the login test scenario
+        Login.executeTestSteps(configReader, keywordFunctions);
+    }
 
+    @AfterClass
+    public void teardown() {
         // Quit the WebDriver
         driverFactory.quitDriver();
     }
-
 }

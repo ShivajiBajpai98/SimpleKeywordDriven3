@@ -9,8 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Login
-{
+public class Login {
     public static void executeTestSteps(ConfigReader configReader, KeywordFunctions keywordFunctions) {
         List<Map<String, String>> testSteps = new ArrayList<>();
 
@@ -45,7 +44,7 @@ public class Login
 
         // Iterate over the test steps and execute them
         for (Map<String, String> step : testSteps) {
-            KeywordDrivenFramework. executeTestStep(configReader, keywordFunctions, step);
+            KeywordDrivenFramework.executeTestStep(configReader, keywordFunctions, step);
         }
     }
 }

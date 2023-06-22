@@ -1,17 +1,11 @@
 package com.atmecs.tests;
 
 import com.atmecs.config.ConfigReader;
-
 import com.atmecs.keywords.KeywordFunctions;
-
-
 
 import java.util.Map;
 
 public class KeywordDrivenFramework {
-
-
-
     public static void executeTestStep(ConfigReader configReader, KeywordFunctions keywordFunctions, Map<String, String> step) {
         String method = step.get("method");
         String locatorTypeKey = step.get("locatorTypeKey");
